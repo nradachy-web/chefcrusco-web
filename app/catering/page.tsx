@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PageHero } from "@/components/site/PageHero";
-import { SectionHead, PricingTiers, Steps, TrustStrip, ClosingCTA } from "@/components/site/sections";
+import { SectionHead, PricingTiers, Steps, TrustStrip, TermsBlock, ClosingCTA } from "@/components/site/sections";
 import { Gallery } from "@/components/site/Gallery";
 import { ChefsHands } from "@/components/site/ChefsHands";
 import { Proof } from "@/components/site/Proof";
 import { InquiryPlate } from "@/components/site/InquiryPlate";
+import { FAQAccordion } from "@/components/site/FAQAccordion";
 import { Reveal } from "@/components/site/Reveal";
-import { cateringTiers, cateringFootnote } from "@/lib/content";
+import { cateringTiers, cateringFootnote, faqs, terms } from "@/lib/content";
+
+const cateringFaqs = [faqs[0], faqs[2], faqs[4], faqs[5], faqs[8], faqs[13]];
 
 export const metadata: Metadata = {
   title: "Catering & Events in Austin",
@@ -50,7 +53,7 @@ export default function Catering() {
         alt="A full holiday catering spread on a long table"
       />
 
-      <TrustStrip items={["Rated 5.0 on Google", "6 to 150 guests", "Austin and 30 miles around", "TABC and TFSM certified team"]} />
+      <TrustStrip items={["Rated 5.0 on Google", "From intimate dinners to 150 guests", "Austin and 30 miles around", "TABC and TFSM certified team"]} />
 
       <section className="bg-linen">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
@@ -77,15 +80,18 @@ export default function Catering() {
 
       <PricingTiers
         eyebrow="Menus and honest pricing"
-        title="Three ways to serve your guests."
+        title="Four ways to serve your guests."
         tiers={cateringTiers}
         footnote={cateringFootnote}
+        cols={4}
         bone
       />
 
       <ChefsHands />
       <Steps title="How it works." steps={steps} />
       <Proof />
+      <FAQAccordion items={cateringFaqs} bone />
+      <TermsBlock items={terms} />
       <InquiryPlate />
       <ClosingCTA title="Let us cater your celebration." />
     </>

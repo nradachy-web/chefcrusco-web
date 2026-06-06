@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Stars } from "./Stars";
+import { trustedBy, eliteClients } from "@/lib/content";
 
 const reviews = [
   {
@@ -20,14 +21,6 @@ const reviews = [
       "From the moment I started talking with him, I knew he was my caterer. They cooked and served the best meal I could ever have hoped for, then washed every dish and cleaned my counters. Best decision ever.",
     name: "Judy Carr",
   },
-];
-
-const trustedBy = [
-  "The Austin Winery",
-  "Texas Beef Council",
-  "Founding Austin",
-  "Le Cordon Bleu",
-  "Austin Culture Map",
 ];
 
 export function Proof() {
@@ -85,11 +78,15 @@ export function Proof() {
           ))}
         </div>
 
-        <div className="mt-16 border-t border-gold/40 pt-10">
+        <p className="mt-14 text-sm text-cocoa">
+          Private clients have included {eliteClients.join(", ")}.
+        </p>
+
+        <div className="mt-10 border-t border-gold/40 pt-10">
           <p className="eyebrow text-cocoa">Trusted by</p>
-          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-medium text-cocoa/80">
+          <ul className="mt-5 flex flex-wrap items-center justify-center gap-x-7 gap-y-2.5 text-sm font-medium text-cocoa/80">
             {trustedBy.map((t) => (
-              <li key={t} className="font-display text-lg italic">
+              <li key={t} className="font-display text-base italic">
                 {t}
               </li>
             ))}

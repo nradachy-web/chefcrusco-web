@@ -98,33 +98,41 @@ export function PricingTiers({
   tiers,
   footnote,
   bone,
+  cols,
 }: {
   eyebrow: string;
   title: string;
-  tiers: { name: string; price: string; unit: string; min?: string; note?: string }[];
+  tiers: { name: string; price: string; unit: string; min?: string; note?: string; courses?: string; seated?: string }[];
   footnote?: string;
   bone?: boolean;
+  cols?: 3 | 4;
 }) {
+  const grid = cols === 4 ? "md:grid-cols-2 lg:grid-cols-4" : "md:grid-cols-3";
   return (
     <section className={bone ? "bg-bone" : "bg-linen"}>
       <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
         <SectionHead eyebrow={eyebrow} title={title} />
-        <div className="mt-14 grid gap-7 md:grid-cols-3">
+        <div className={`mt-14 grid gap-7 ${grid}`}>
           {tiers.map((t, i) => (
-            <Reveal key={t.name} delay={i * 0.08}>
-              <div className="flex h-full flex-col border border-gold/50 bg-linen p-8">
-                <h3 className="font-display text-2xl font-medium text-espresso">{t.name}</h3>
+            <Reveal key={t.name} delay={i * 0.06}>
+              <div className="flex h-full flex-col border border-gold/50 bg-linen p-7">
+                <h3 className="font-display text-xl font-medium text-espresso">{t.name}</h3>
                 <p className="mt-4 font-display text-4xl font-medium text-saffron tnum">
                   ${t.price}
                 </p>
                 <p className="text-sm text-cocoa">{t.unit}</p>
-                {t.min && <p className="mt-1 text-sm text-cocoa tnum">{t.min}</p>}
-                {t.note && <p className="mt-5 flex-1 text-[0.95rem] leading-relaxed text-cocoa">{t.note}</p>}
+                {(t.courses || t.seated) && (
+                  <p className="mt-2 text-xs uppercase tracking-wide text-cocoa/70">
+                    {[t.courses, t.seated].filter(Boolean).join(" · ")}
+                  </p>
+                )}
+                {t.min && <p className="mt-1 text-sm font-medium text-cocoa tnum">{t.min}</p>}
+                {t.note && <p className="mt-5 flex-1 text-[0.9rem] leading-relaxed text-cocoa">{t.note}</p>}
               </div>
             </Reveal>
           ))}
         </div>
-        {footnote && <p className="mt-6 max-w-2xl text-sm text-cocoa tnum">{footnote}</p>}
+        {footnote && <p className="mt-6 max-w-3xl text-sm text-cocoa tnum">{footnote}</p>}
       </div>
     </section>
   );
@@ -218,6 +226,28 @@ export function ImageBand({ image, alt }: { image: string; alt: string }) {
     <section className="relative h-[42vh] w-full overflow-hidden bg-espresso sm:h-[56vh]">
       <Image src={image} alt={alt} fill sizes="100vw" className="object-cover" />
       <div aria-hidden className="absolute inset-0 bg-espresso/20" />
+    </section>
+  );
+}
+
+export function TermsBlock({ items, bone }: { items: string[]; bone?: boolean }) {
+  return (
+    <section className={bone ? "bg-bone" : "bg-linen"}>
+      <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8">
+        <SectionHead eyebrow="Good to know" title="Clear terms, no surprises." />
+        <ul className="mt-10 grid gap-x-12 gap-y-4 sm:grid-cols-2">
+          {items.map((t, i) => (
+            <Reveal key={i} delay={i * 0.04}>
+              <li className="flex items-start gap-3 border-t border-gold/40 pt-4 text-[0.95rem] text-cocoa tnum">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" className="mt-0.5 shrink-0 text-rosemary">
+                  <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                {t}
+              </li>
+            </Reveal>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }

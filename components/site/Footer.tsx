@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { nav, site } from "@/lib/site";
+import { nav, footerNav, site } from "@/lib/site";
 
 export function Footer() {
   return (
@@ -30,15 +30,17 @@ export function Footer() {
               {item.label}
             </Link>
           ))}
-          <Link href="#inquiry" className="text-linen/75 hover:text-linen">
-            Book
-          </Link>
+          {footerNav.map((item) => (
+            <Link key={item.href} href={item.href} className="text-linen/75 hover:text-linen">
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex flex-col gap-3 text-sm">
           <p className="eyebrow text-candle">The kitchen</p>
           <p className="text-linen/70">Chefs TFSM certified</p>
-          <p className="text-linen/70">Servers TABC certified</p>
+          <p className="text-linen/70">Servers and bartenders TABC certified</p>
           <p className="text-linen/70">Over 40 years combined experience</p>
           <p className="mt-2 text-linen/70">Rated 5 stars on Google</p>
         </div>

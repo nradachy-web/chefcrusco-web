@@ -82,7 +82,7 @@ export function ChefsHands() {
             className="mt-9 max-w-md font-display text-xl italic leading-relaxed text-linen/90"
           >
             &ldquo;A chef must think like a scientist, organize like an accountant,
-            and plate like an artist.&rdquo;
+            plate like an artist, and cook like a Grandma.&rdquo;
           </motion.p>
         </div>
       </div>

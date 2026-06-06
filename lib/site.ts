@@ -25,5 +25,13 @@ export const nav = [
   { label: "Catering", href: "/catering" },
   { label: "Corporate", href: "/corporate" },
   { label: "Menus", href: "/menus" },
+  { label: "Wine", href: "/wine" },
   { label: "The Chef", href: "/story" },
+] as const;
+
+export const footerNav = [
+  { label: "555 Meal Program", href: "/555" },
+  { label: "Press", href: "/press" },
+  { label: "FAQ", href: "/faq" },
+  { label: "Book", href: "/book" },
 ] as const;

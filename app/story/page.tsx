@@ -32,7 +32,7 @@ export default function Story() {
           <Reveal>
             <blockquote className="font-display text-[clamp(1.6rem,3.4vw,2.6rem)] font-normal italic leading-[1.3] text-espresso">
               &ldquo;A chef must think like a scientist, organize like an
-              accountant, and plate like an artist.&rdquo;
+              accountant, plate like an artist, and cook like a Grandma.&rdquo;
             </blockquote>
             <p className="mt-6 eyebrow text-oxblood">Carlos Crusco</p>
           </Reveal>
@@ -74,13 +74,14 @@ export default function Story() {
       {/* the team */}
       <section className="bg-bone">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
-          <SectionHead eyebrow="The team" title="Forty years of combined experience." intro="Servers TABC certified. Chefs TFSM certified." />
-          <div className="mt-12 grid gap-7 md:grid-cols-3">
+          <SectionHead eyebrow="The team" title="Over forty years of combined experience." intro="Three chefs and a team of seasoned servers. Chefs are TFSM certified, servers and bartenders are TABC certified." />
+          <div className="mt-12 grid gap-7 md:grid-cols-2 lg:grid-cols-3">
             {team.map((m, i) => (
-              <Reveal key={m.name} delay={i * 0.08}>
-                <div className="h-full border border-gold/50 bg-linen p-8">
+              <Reveal key={m.name} delay={(i % 3) * 0.06}>
+                <div className="flex h-full flex-col border border-gold/50 bg-linen p-7">
                   <h3 className="font-display text-xl font-medium text-espresso">{m.name}</h3>
-                  <p className="mt-3 text-[0.95rem] leading-relaxed text-cocoa">{m.role}</p>
+                  <p className="mt-1 text-xs uppercase tracking-wide text-oxblood">{m.role}</p>
+                  <p className="mt-4 text-[0.92rem] leading-relaxed text-cocoa">{m.bio}</p>
                 </div>
               </Reveal>
             ))}

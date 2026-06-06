@@ -5,7 +5,11 @@ import { ChefsHands } from "@/components/site/ChefsHands";
 import { Proof } from "@/components/site/Proof";
 import { GalleryFinale } from "@/components/site/GalleryFinale";
 import { InquiryPlate } from "@/components/site/InquiryPlate";
+import { FAQAccordion } from "@/components/site/FAQAccordion";
+import { faqs } from "@/lib/content";
 import { site } from "@/lib/site";
+
+const homeFaqs = [faqs[0], faqs[1], faqs[2], faqs[4], faqs[5], faqs[8]];
 
 const jsonLd = {
   "@context": "https://schema.org",
@@ -33,6 +37,7 @@ export default function Home() {
       <ChefsHands />
       <Proof />
       <GalleryFinale />
+      <FAQAccordion items={homeFaqs} bone />
       <InquiryPlate />
     </>
   );

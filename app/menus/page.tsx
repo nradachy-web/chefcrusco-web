@@ -5,7 +5,7 @@ import { SectionHead, ClosingCTA, ImageBand } from "@/components/site/sections";
 import { Gallery } from "@/components/site/Gallery";
 import { InquiryPlate } from "@/components/site/InquiryPlate";
 import { Reveal } from "@/components/site/Reveal";
-import { tapasSavory, tapasSweet, dropOffPlatters, cuisinePaths } from "@/lib/content";
+import { tapasSavory, tapasSweet, dropOffPlatters, cuisinePaths, cookingClasses } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Menus",
@@ -58,16 +58,26 @@ export default function Menus() {
       {/* prix fixe / private */}
       <section className="bg-linen">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
-          <SectionHead eyebrow="01  Prix-Fixe and Private" title="Five ways to set the table." intro="Plated, seated, four courses. 155 to 165 per person. Customer Specific menus from 215 per person." />
-          <ul className="mt-10 grid gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-            {cuisinePaths.map((c) => (
-              <li key={c.name} className="border-t border-gold/40 pt-4">
-                <p className="font-display text-lg text-espresso">{c.name}</p>
-                <p className="text-sm text-cocoa">{c.note}</p>
-              </li>
+          <SectionHead eyebrow="01  Prix-Fixe and Private" title="Five cuisines, four courses each." intro="Plated, seated, four courses. 155 to 165 per person, menu dependent. Customer Specific menus from 215 per person." />
+          <div className="mt-12 grid gap-10 md:grid-cols-2">
+            {cuisinePaths.map((c, i) => (
+              <Reveal key={c.name} delay={i * 0.05}>
+                <div className="border-t border-gold/40 pt-5">
+                  <h3 className="font-display text-2xl font-medium text-espresso">{c.name}</h3>
+                  <p className="mt-1 text-sm text-cocoa">{c.note}</p>
+                  <ol className="mt-4 space-y-2.5">
+                    {c.courses.map((course, n) => (
+                      <li key={n} className="flex gap-3 text-[0.95rem] text-cocoa">
+                        <span className="font-display text-saffron tnum">{String(n + 1).padStart(2, "0")}</span>
+                        <span>{course}</span>
+                      </li>
+                    ))}
+                  </ol>
+                </div>
+              </Reveal>
             ))}
-          </ul>
-          <Link href="/private-chef" className="btn-ghost mt-8 inline-flex text-saffron">
+          </div>
+          <Link href="/private-chef" className="btn-ghost mt-10 inline-flex text-saffron">
             See private chef dinners
           </Link>
         </div>
@@ -105,6 +115,18 @@ export default function Menus() {
           <ul className="mt-10 grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:grid-cols-5">
             {dropOffPlatters.map((p) => (
               <li key={p} className="border-t border-gold/40 pt-3 font-display text-lg text-espresso">{p}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
+      {/* cooking classes */}
+      <section className="bg-bone">
+        <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
+          <SectionHead eyebrow="Hands-on" title="Cooking classes, plated and seated." intro="Four courses, 155 to 165 per person, menu dependent. Minimum 1,000 per event. A dinner party where the kitchen is the entertainment." />
+          <ul className="mt-10 grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:grid-cols-4">
+            {cookingClasses.map((c) => (
+              <li key={c} className="border-t border-gold/40 pt-3 text-[0.95rem] text-espresso">{c}</li>
             ))}
           </ul>
         </div>
