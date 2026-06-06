@@ -118,7 +118,7 @@ export function PricingTiers({
               <div className="flex h-full flex-col border border-gold/50 bg-linen p-7">
                 <h3 className="font-display text-xl font-medium text-espresso">{t.name}</h3>
                 <p className="mt-4 font-display text-4xl font-medium text-saffron tnum">
-                  ${t.price}
+                  {t.price.startsWith("from ") ? `from $${t.price.slice(5)}` : `$${t.price}`}
                 </p>
                 <p className="text-sm text-cocoa">{t.unit}</p>
                 {(t.courses || t.seated) && (
