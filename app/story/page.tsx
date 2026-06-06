@@ -79,9 +79,16 @@ export default function Story() {
             {team.map((m, i) => (
               <Reveal key={m.name} delay={(i % 3) * 0.06}>
                 <div className="flex h-full flex-col border border-gold/50 bg-linen p-7">
-                  <h3 className="font-display text-xl font-medium text-espresso">{m.name}</h3>
-                  <p className="mt-1 text-xs uppercase tracking-wide text-oxblood">{m.role}</p>
-                  <p className="mt-4 text-[0.92rem] leading-relaxed text-cocoa">{m.bio}</p>
+                  <div className="flex items-center gap-4">
+                    <div className="relative size-16 shrink-0 overflow-hidden rounded-full border border-gold/50">
+                      <Image src={m.headshot} alt={m.name} fill sizes="64px" className="object-cover" />
+                    </div>
+                    <div>
+                      <h3 className="font-display text-xl font-medium leading-tight text-espresso">{m.name}</h3>
+                      <p className="mt-0.5 text-xs uppercase tracking-wide text-oxblood">{m.role}</p>
+                    </div>
+                  </div>
+                  <p className="mt-5 text-[0.92rem] leading-relaxed text-cocoa">{m.bio}</p>
                 </div>
               </Reveal>
             ))}
