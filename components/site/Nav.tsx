@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { nav, site } from "@/lib/site";
 
 export const BOOK_HREF = "#inquiry";
@@ -16,6 +17,49 @@ export function Nav() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const pathname = usePathname();
+  const minimal = pathname?.startsWith("/lp");
+
+  // Distraction-free header for paid landing pages: brand + phone + one CTA.
+  // No menu links, so we never invite the visitor away from the offer.
+  if (minimal) {
+    return (
+      <header
+        className={`fixed inset-x-0 top-0 z-[65] transition-colors duration-500 ${
+          solid
+            ? "bg-linen/92 backdrop-blur-md border-b border-gold/30"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex max-w-[1280px] items-center justify-between px-5 py-4 sm:px-8">
+          <span
+            className={`font-display text-xl font-medium tracking-tight transition-colors ${
+              solid ? "text-espresso" : "text-linen"
+            }`}
+          >
+            Chef Crusco
+          </span>
+          <div className="flex items-center gap-3 sm:gap-5">
+            <a
+              href={site.phoneHref}
+              className={`text-sm font-semibold transition-colors hover:text-saffron ${
+                solid ? "text-espresso" : "text-linen"
+              }`}
+            >
+              {site.phone}
+            </a>
+            <a
+              href={BOOK_HREF}
+              className="btn-saffron hidden text-sm sm:inline-flex"
+            >
+              Plan your event
+            </a>
+          </div>
+        </div>
+      </header>
+    );
+  }
 
   return (
     <header
