@@ -6,6 +6,7 @@ import {
   Steps,
   FeatureDish,
   TrustStrip,
+  MenuLinks,
   ClosingCTA,
 } from "@/components/site/sections";
 import { Proof } from "@/components/site/Proof";
@@ -57,17 +58,34 @@ export default function LpPrivateChef() {
         cols={4}
       />
 
+      <MenuLinks
+        title="See the menus before you book."
+        links={[
+          {
+            label: "Prix-Fixe Cuisine Menus",
+            desc: "Five cuisines, four courses each. Browse every course, dish by dish.",
+            href: "/menus#prix-fixe",
+          },
+          {
+            label: "Customer Specific Menus",
+            desc: "Five to nine courses designed entirely around your table. From 215 per person.",
+            href: "/menus#customer-specific",
+          },
+        ]}
+        bone
+      />
+
       <Benefits
         eyebrow="The experience"
         title="Dinner, handled from first plate to last dish."
         items={[
           {
             title: "Your table, your menu",
-            body: "We design the menu around your taste, your guests, and any dietary needs. French, Italian, Latin, Spanish, or steak house.",
+            body: "We design the menu around your taste, your guests, and any dietary needs. French, Italian, Latin, Spanish, or Steak House.",
           },
           {
             title: "Cooked in front of you",
-            body: "Carlos and the team cook fresh in your kitchen and plate each course to order. The kitchen becomes part of the evening.",
+            body: "Your own private Chef and team cook fresh in your kitchen and plate each course to order. The kitchen becomes part of the evening.",
           },
           {
             title: "We leave it spotless",
@@ -82,7 +100,7 @@ export default function LpPrivateChef() {
       <FeatureDish
         eyebrow="The signature plate"
         name="Provencal Lamb, Peppercorns, Demi-Glace"
-        body="Slow, confident cooking and a clean finish. The plate the menu is built around, and a good place to start the conversation about yours."
+        body="Slow, confident cooking and a clean finish. This signature plate is one example of what a four-course dinner can look like. Every menu is designed around you and your guests."
         price="Four-course private dinners from 155 to 165 per person. Customer Specific menus from 215. Staffing and gratuity additional."
         image="/photos/food-provencal-lamb.jpg"
         alt="Provencal lamb with peppercorns and demi-glace on a wood board"

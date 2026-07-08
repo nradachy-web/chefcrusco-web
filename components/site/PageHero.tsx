@@ -43,7 +43,7 @@ export function PageHero({
       <div aria-hidden className="absolute inset-0 bg-gradient-to-r from-espresso/85 via-espresso/25 to-transparent" />
 
       <div className="relative z-10 mx-auto w-full max-w-[1280px] px-5 pb-16 sm:px-8">
-        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1, duration: 0.8 }} className="eyebrow text-candle">
+        <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.1, duration: 0.8 }} className="eyebrow text-linen drop-shadow-[0_1px_3px_rgba(26,18,12,0.55)]">
           {eyebrow}
         </motion.p>
         <h1 className="mt-5 font-display font-medium leading-[1.0] text-linen">

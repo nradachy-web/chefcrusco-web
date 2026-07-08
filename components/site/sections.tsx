@@ -1,6 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 import { site } from "@/lib/site";
 import { Reveal, SaffronRule } from "./Reveal";
+import { Stars } from "./Stars";
 import { BOOK_HREF } from "./Nav";
 
 export function SectionHead({
@@ -183,14 +185,22 @@ export function TrustStrip({ items }: { items: string[] }) {
   return (
     <section className="border-y border-gold/40 bg-bone">
       <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-6 sm:px-8">
-        {items.map((it) => (
-          <span key={it} className="flex items-center gap-2 text-sm font-medium text-cocoa">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" className="text-rosemary">
-              <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-            {it}
-          </span>
-        ))}
+        {items.map((it) =>
+          it.includes("5.0") ? (
+            // The rating gets stars and full-contrast text so it never reads as fine print.
+            <span key={it} className="flex items-center gap-2 text-sm font-semibold text-espresso">
+              <Stars />
+              {it}
+            </span>
+          ) : (
+            <span key={it} className="flex items-center gap-2 text-sm font-medium text-cocoa">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" className="text-rosemary">
+                <path d="M5 13l4 4L19 7" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              {it}
+            </span>
+          )
+        )}
       </div>
     </section>
   );
@@ -216,6 +226,42 @@ export function ClosingCTA({
           </div>
           <p className="mt-6 text-sm text-linen/55">{site.serviceArea}.</p>
         </Reveal>
+      </div>
+    </section>
+  );
+}
+
+export function MenuLinks({
+  eyebrow = "The menus",
+  title,
+  links,
+  bone,
+}: {
+  eyebrow?: string;
+  title: string;
+  links: { label: string; desc: string; href: string }[];
+  bone?: boolean;
+}) {
+  return (
+    <section className={bone ? "bg-bone" : "bg-linen"}>
+      <div className="mx-auto max-w-[1280px] px-5 py-20 sm:px-8">
+        <SectionHead eyebrow={eyebrow} title={title} />
+        <div className={`mt-10 grid gap-7 ${links.length > 2 ? "md:grid-cols-3" : "md:grid-cols-2"}`}>
+          {links.map((l, i) => (
+            <Reveal key={l.label} delay={i * 0.06}>
+              <Link
+                href={l.href}
+                className={`group flex h-full flex-col border border-gold/50 p-7 transition-colors hover:border-saffron ${bone ? "bg-linen" : "bg-bone"}`}
+              >
+                <h3 className="font-display text-xl font-medium text-espresso">{l.label}</h3>
+                <p className="mt-2 flex-1 text-[0.95rem] text-cocoa">{l.desc}</p>
+                <span className="mt-5 text-sm font-semibold text-saffron group-hover:text-oxblood">
+                  View the menu
+                </span>
+              </Link>
+            </Reveal>
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -15,7 +15,7 @@ export function Footer() {
       <footer className="bg-espresso text-linen/80">
         <div className="mx-auto flex w-full max-w-[1280px] flex-col gap-8 px-5 py-12 sm:flex-row sm:items-end sm:justify-between sm:px-8">
           <div className="max-w-sm">
-            <p className="font-display text-2xl text-linen">Chef Crusco</p>
+            <p className="font-display text-2xl text-linen">Chef Crusco Catering</p>
             <p className="mt-3 text-sm leading-relaxed text-linen/65">
               {site.tagline}. {site.subTagline}. Private chef and catering serving{" "}
               {site.serviceArea}.
@@ -31,7 +31,7 @@ export function Footer() {
             <a href={`mailto:${site.email}`} className="hover:text-candle">
               {site.email}
             </a>
-            <p className="mt-2 text-linen/60">Rated 5 stars on Google</p>
+            <p className="mt-2 font-medium text-candle">Rated 5.0 on Google</p>
             <p className="text-linen/60">TABC and TFSM certified team</p>
           </div>
         </div>

@@ -5,6 +5,7 @@ import {
   SectionHead,
   PricingTiers,
   TrustStrip,
+  MenuLinks,
   ClosingCTA,
 } from "@/components/site/sections";
 import { Proof } from "@/components/site/Proof";
@@ -111,6 +112,22 @@ export default function LpCorporate() {
         bone
       />
 
+      <MenuLinks
+        title="Menus and programs, one click away."
+        links={[
+          {
+            label: "Drop-Off Platters",
+            desc: "Beautiful boards delivered ready to serve. 50 to 75 per person.",
+            href: "/menus#drop-off",
+          },
+          {
+            label: "The Dinner for Eight Program",
+            desc: "A chef-prepared dinner for eight, delivered as a gift to your most valued clients.",
+            href: "/corporate#dinner-for-eight",
+          },
+        ]}
+      />
+
       {/* Recurring office lunch subscription */}
       <section className="bg-linen">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
@@ -161,8 +178,8 @@ export default function LpCorporate() {
           <Reveal>
             <div className="relative aspect-[4/3] w-full overflow-hidden">
               <Image
-                src="/photos/event-2024-img4218.jpg"
-                alt="The Chef Crusco team at a corporate event"
+                src="/photos/carlos-staff-in-action.jpg"
+                alt="A Chef Crusco Catering chef cooking at a live event station"
                 fill
                 sizes="(max-width:1024px) 100vw, 50vw"
                 className="object-cover"
@@ -170,7 +187,7 @@ export default function LpCorporate() {
             </div>
           </Reveal>
           <Reveal delay={0.1}>
-            <p className="eyebrow text-oxblood">Why companies trust Crusco</p>
+            <p className="eyebrow text-oxblood">Why companies trust Chef Crusco Catering</p>
             <SaffronRule className="mt-3" />
             <h2 className="mt-5 font-display text-[clamp(1.9rem,3.6vw,3rem)] font-medium leading-tight text-espresso">
               Built for people who cannot afford a surprise.
@@ -200,7 +217,7 @@ export default function LpCorporate() {
       <Proof />
       <InquiryPlate />
       <ClosingCTA
-        title="Bring Crusco to your team."
+        title="Bring Chef Crusco Catering to your team."
         sub="Tell us what your company needs and get a clear, written estimate within 24 hours."
       />
     </>

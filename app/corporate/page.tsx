@@ -128,7 +128,7 @@ export default function Corporate() {
       </section>
 
       {/* Dinner for Eight */}
-      <section className="relative overflow-hidden bg-espresso text-linen">
+      <section id="dinner-for-eight" className="relative scroll-mt-24 overflow-hidden bg-espresso text-linen">
         <div aria-hidden className="absolute inset-0" style={{ background: "radial-gradient(46% 50% at 30% 35%, rgba(232,197,138,0.16), transparent 70%)" }} />
         <div className="relative mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
           <SectionHead eyebrow="Client gifting" title="The Dinner for Eight program." light intro="A chef-prepared dinner for eight, delivered as a gift to your most valued clients. Choose a package and we handle the rest." />

@@ -56,7 +56,7 @@ export default function Menus() {
       </section>
 
       {/* prix fixe / private */}
-      <section className="bg-linen">
+      <section id="prix-fixe" className="scroll-mt-24 bg-linen">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
           <SectionHead eyebrow="01  Prix-Fixe and Private" title="Five cuisines, four courses each." intro="Plated, seated, four courses. 155 to 165 per person, menu dependent. Customer Specific menus from 215 per person." />
           <div className="mt-12 grid gap-10 md:grid-cols-2">
@@ -84,7 +84,7 @@ export default function Menus() {
       </section>
 
       {/* tapas */}
-      <section className="bg-bone">
+      <section id="tapas" className="scroll-mt-24 bg-bone">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
           <SectionHead eyebrow="02  Tapas and Appetizers" title="Spanish small plates, passed and stationed." intro="80 to 140 per person. 1,000 minimum." />
           <div className="mt-10 grid gap-12 md:grid-cols-2">
@@ -109,7 +109,7 @@ export default function Menus() {
       </section>
 
       {/* drop off */}
-      <section className="bg-linen">
+      <section id="drop-off" className="scroll-mt-24 bg-linen">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
           <SectionHead eyebrow="03  Drop-Off Platters" title="Beautiful boards, delivered ready to serve." intro="50 to 75 per person. 800 minimum. Delivery is 30 dollars within 30 miles of Austin." />
           <ul className="mt-10 grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:grid-cols-5">
@@ -135,7 +135,7 @@ export default function Menus() {
       <ImageBand image="/photos/event-vday-dinner.jpg" alt="A candlelit customer specific tasting" />
 
       {/* customer specific */}
-      <section className="bg-espresso text-linen">
+      <section id="customer-specific" className="scroll-mt-24 bg-espresso text-linen">
         <div className="mx-auto max-w-3xl px-5 py-24 text-center sm:px-8 sm:py-28">
           <SectionHead eyebrow="04  Customer Specific" title="When you want something all your own." light intro="Five to nine courses, designed around your taste and your table. From 215 per person. 1,600 minimum." />
         </div>

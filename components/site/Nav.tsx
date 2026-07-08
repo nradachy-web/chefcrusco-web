@@ -38,7 +38,7 @@ export function Nav() {
               solid ? "text-espresso" : "text-linen"
             }`}
           >
-            Chef Crusco
+            Chef Crusco Catering
           </span>
           <div className="flex items-center gap-3 sm:gap-5">
             <a

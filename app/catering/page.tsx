@@ -48,12 +48,12 @@ export default function Catering() {
       <PageHero
         eyebrow="Austin catering and events"
         lines={["The best table in town.", "Brought to your celebration."]}
-        sub="Weddings, parties, and social events from 6 to 150 guests. Tapas, grazing tables, and full plated service, cooked fresh on site."
+        sub="Weddings, parties, and social events from 6 to 200 people. Tapas, grazing tables, and full plated service, cooked fresh on site."
         image="/photos/event-2024-img5873.jpg"
         alt="A full holiday catering spread on a long table"
       />
 
-      <TrustStrip items={["Rated 5.0 on Google", "From intimate dinners to 150 guests", "Austin and 30 miles around", "TABC and TFSM certified team"]} />
+      <TrustStrip items={["Rated 5.0 on Google", "From intimate dinners to 200 people", "Austin and 30 miles around", "TABC and TFSM certified team"]} />
 
       <section className="bg-linen">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">

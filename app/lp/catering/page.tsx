@@ -6,6 +6,7 @@ import {
   PricingTiers,
   Steps,
   TrustStrip,
+  MenuLinks,
   ClosingCTA,
 } from "@/components/site/sections";
 import { Proof } from "@/components/site/Proof";
@@ -17,7 +18,7 @@ import { cateringTiers, cateringFootnote } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Catering in Austin | Weddings, Parties & Events",
   description:
-    "Austin catering for weddings, dinner parties, and events from 6 to 150 guests. Tapas, grazing, drop-off, and full plated service, cooked fresh on site. Free estimate in 24 hours. Rated 5 stars on Google.",
+    "Austin catering for weddings, dinner parties, and events from 6 to 200 people. Tapas, grazing, drop-off, and full plated service, cooked fresh on site. Free estimate in 24 hours. Rated 5 stars on Google.",
   robots: { index: false, follow: true },
 };
 
@@ -55,7 +56,7 @@ export default function LpCatering() {
       <PageHero
         eyebrow="Austin catering and events · Rated 5.0 on Google"
         lines={["Catering in Austin,", "done beautifully."]}
-        sub="Weddings, dinner parties, and social events from 6 to 150 guests. Tapas, grazing tables, and full plated service, cooked fresh on site."
+        sub="Weddings, dinner parties, and social events from 6 to 200 people. Tapas, grazing tables, and full plated service, cooked fresh on site."
         image="/photos/event-2024-img5873.jpg"
         alt="A full holiday catering spread on a long table"
         cta="Plan your event"
@@ -64,7 +65,7 @@ export default function LpCatering() {
       <TrustStrip
         items={[
           "Rated 5.0 on Google",
-          "From intimate dinners to 150 guests",
+          "From intimate dinners to 200 people",
           "Austin and 30 miles around",
           "TABC and TFSM certified team",
         ]}
@@ -109,6 +110,27 @@ export default function LpCatering() {
         footnote={cateringFootnote}
         cols={4}
         bone
+      />
+
+      <MenuLinks
+        title="Browse the menus."
+        links={[
+          {
+            label: "Tapas and Appetizers",
+            desc: "Spanish small plates, passed and stationed. 80 to 140 per person.",
+            href: "/menus#tapas",
+          },
+          {
+            label: "Drop-Off Platters",
+            desc: "Beautiful boards delivered ready to serve. 50 to 75 per person.",
+            href: "/menus#drop-off",
+          },
+          {
+            label: "Prix-Fixe Cuisine Menus",
+            desc: "Plated four-course dinners in five cuisines. 155 to 165 per person.",
+            href: "/menus#prix-fixe",
+          },
+        ]}
       />
 
       <Proof />

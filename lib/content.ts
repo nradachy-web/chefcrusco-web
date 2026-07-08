@@ -92,7 +92,7 @@ export const corporateLunch = {
     { name: "6 Month Subscription", note: "10 percent off." },
     { name: "12 Month Subscription", note: "20 percent off." },
   ],
-  terms: "Pricing depends on lunches per week and lunches per delivery. Includes plates, utensils, napkins. Delivery 25 within 30 miles of Austin. Minimum 20 employees and 2 lunches per week.",
+  terms: "Pricing depends on lunches per week and lunches per delivery. Includes plates, utensils, napkins. Delivery 25 within 30 miles of Austin. Minimum 15 to 20 employees and 2 lunches per week.",
   features: [
     "Diverse cuisines",
     "Sustainable and balanced serving portions",
@@ -208,7 +208,7 @@ export const trustedBy = [
 export const faqs = [
   { q: "Why hire Chef Crusco Catering?", a: "Read our reviews and you will get a great idea why customers hire us. What sets us apart is our strive for excellence, creating unforgettable food experiences, treating customers with respect, and ultimately making them feel like a guest at their own dinner party." },
   { q: "What kinds of events do you cater?", a: "We cater all types of events: dinner parties, intimate weddings and rehearsal dinners, all corporate events, tapas parties, cooking classes, and really almost any type of social gathering." },
-  { q: "What size of events can you cater?", a: "We do smaller dinners from 6 to 30 people as well as larger parties of up to 150 people." },
+  { q: "What size of events can you cater?", a: "We do smaller dinners from 6 to 30 people as well as larger parties of up to 200 people." },
   { q: "Which chef will come to do our dinner?", a: "We have three (Chef Carlos, Leah, and Derek) who will make your event fun and entertaining. The chef on site is based on availability, expertise, and scheduling. Rest assured that whoever does the dinner, it will be an amazing and unforgettable experience." },
   { q: "What are your services and prices?", a: "We offer four service levels: Drop Off, Tapas, Prix-Fixe, and Customer Specific. Each explains what it includes and the price ranges, which vary and depend on guest count, types of food, and the number of courses." },
   { q: "How do I book Chef Crusco Catering?", a: "Tell us about your event and choose your service level. Once we receive your request we ask for a 25 percent deposit to finalize your reservation. The deposit is then applied to the final balance." },
