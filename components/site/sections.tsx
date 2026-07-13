@@ -187,11 +187,17 @@ export function TrustStrip({ items }: { items: string[] }) {
       <div className="mx-auto flex max-w-[1280px] flex-wrap items-center justify-center gap-x-8 gap-y-3 px-5 py-6 sm:px-8">
         {items.map((it) =>
           it.includes("5.0") ? (
-            // The rating gets stars and full-contrast text so it never reads as fine print.
-            <span key={it} className="flex items-center gap-2 text-sm font-semibold text-espresso">
+            // The rating gets stars, full-contrast text, and links to the Google reviews.
+            <a
+              key={it}
+              href="https://www.google.com/search?q=chef+crusco+catering+reviews"
+              target="_blank"
+              rel="noopener"
+              className="flex items-center gap-2 text-sm font-semibold text-espresso underline decoration-gold/60 underline-offset-4 transition-colors hover:decoration-saffron"
+            >
               <Stars />
               {it}
-            </span>
+            </a>
           ) : (
             <span key={it} className="flex items-center gap-2 text-sm font-medium text-cocoa">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" className="text-rosemary">

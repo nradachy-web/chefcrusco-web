@@ -122,8 +122,8 @@ export default function LpCorporate() {
           },
           {
             label: "The Dinner for Eight Program",
-            desc: "A chef-prepared dinner for eight, delivered as a gift to your most valued clients.",
-            href: "/corporate#dinner-for-eight",
+            desc: "Our client gifting program: Chef Crusco Catering prepares a complete dinner for eight and delivers it as a gift to your most valued clients or team. See the full program.",
+            href: "https://chefcrusco.com/dinner-for-eight/",
           },
         ]}
       />

@@ -70,7 +70,7 @@ export const cateringTiers = [
   { name: "Customer Specific", price: "from 215", unit: "per person", min: "1,600 minimum", courses: "5 to 9 courses", seated: "Plated and seated", note: "Fully bespoke menus, menu dependent. Staff required for 4 or more guests at 25 per hour." },
   { name: "Prix-Fixe", price: "155 to 165", unit: "per person", min: "1,000 minimum", courses: "4 courses", seated: "Plated and seated", note: "Plated, multi-course, fully served, menu dependent. One staff for 4 or more guests at 25 per hour." },
   { name: "Tapas and Grazing", price: "80 to 140", unit: "per person", min: "1,000 minimum", courses: "4 to 7 courses", seated: "Passed, not seated", note: "Passed and stationed small plates, menu dependent. One staff for 4 or more guests at 25 per hour." },
-  { name: "Drop-Off", price: "50 to 75", unit: "per person", min: "800 minimum", courses: "Multiple servings", seated: "Food drop off only", note: "Beautiful platters delivered ready to serve, menu dependent. Includes plates, utensils, napkins. Delivery 30 within 30 miles." },
+  { name: "Drop-Off", price: "50 to 75", unit: "per person", min: "800 minimum", courses: "Multiple servings", seated: "Food drop off only", note: "Beautiful platters delivered ready to serve, menu dependent. Includes plates, utensils, napkins. Delivery fee is $30 within a 30-mile radius of Austin." },
 ];
 export const cateringFootnote =
   "Staff fee is separate at 25 per hour and covers bartending (TABC certified), set up, food and wine service, and kitchen and plate clean up. A 20 percent gratuity applies to parties of 4 or more.";
@@ -80,7 +80,7 @@ export const corporateParty = [
   { name: "Customer Specific", price: "from 215", unit: "per person", min: "1,600 minimum", courses: "5 to 9 courses", seated: "Plated and seated", note: "Fully bespoke menus, menu dependent. Staff required for 4 or more guests at 25 per hour." },
   { name: "Prix-Fixe and Cooking Classes", price: "155 to 165", unit: "per person", min: "1,000 minimum", courses: "4 courses", seated: "Plated and seated", note: "Menu dependent. One staff for 4 or more guests at 25 per hour." },
   { name: "Tapas and Appetizers", price: "80 to 140", unit: "per person", min: "1,000 minimum", courses: "4 to 7 courses", seated: "Not plated, not seated", note: "Menu dependent. One staff for 4 or more guests at 25 per hour." },
-  { name: "Drop-Off", price: "50 to 75", unit: "per person", min: "800 minimum", courses: "Multiple servings", seated: "Food drop off only", note: "Menu dependent. Includes plates, utensils, napkins. Delivery 30 within 30 miles of Austin." },
+  { name: "Drop-Off", price: "50 to 75", unit: "per person", min: "800 minimum", courses: "Multiple servings", seated: "Food drop off only", note: "Menu dependent. Includes plates, utensils, napkins. Delivery fee is $30 within a 30-mile radius of Austin." },
 ];
 export const corporateStaffScope =
   "Staff fee is separate at 25 per hour and covers bartending (TABC certified), set up, food and wine service, and kitchen and plate clean up.";
