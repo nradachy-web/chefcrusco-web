@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { asset } from "@/lib/asset";
 import { Reveal, SaffronRule } from "./Reveal";
 import { Stars } from "./Stars";
 import { BOOK_HREF } from "./Nav";
@@ -278,6 +279,51 @@ export function ImageBand({ image, alt }: { image: string; alt: string }) {
     <section className="relative h-[42vh] w-full overflow-hidden bg-espresso sm:h-[56vh]">
       <Image src={image} alt={alt} fill sizes="100vw" className="object-cover" />
       <div aria-hidden className="absolute inset-0 bg-espresso/20" />
+    </section>
+  );
+}
+
+// Full-bleed autoplaying muted loop. Video sources bypass next/image, so paths
+// go through asset() for the basePath. poster shows until the reel can play.
+export function ReelBand({
+  mp4,
+  webm,
+  poster,
+  label,
+  caption,
+}: {
+  mp4: string;
+  webm: string;
+  poster: string;
+  label: string;
+  caption?: string;
+}) {
+  return (
+    <section className="relative h-[46vh] min-h-[320px] w-full overflow-hidden bg-espresso sm:h-[62vh]">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="metadata"
+        poster={asset(poster)}
+        aria-label={label}
+      >
+        <source src={asset(webm)} type="video/webm" />
+        <source src={asset(mp4)} type="video/mp4" />
+      </video>
+      <div
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-espresso/75 via-espresso/10 to-espresso/25"
+      />
+      {caption && (
+        <div className="absolute inset-x-0 bottom-0">
+          <div className="mx-auto max-w-[1280px] px-5 py-8 sm:px-8 sm:py-10">
+            <p className="eyebrow text-candle">{caption}</p>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

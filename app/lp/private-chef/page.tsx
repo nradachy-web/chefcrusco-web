@@ -7,6 +7,7 @@ import {
   FeatureDish,
   TrustStrip,
   MenuLinks,
+  ReelBand,
   ClosingCTA,
 } from "@/components/site/sections";
 import { Proof } from "@/components/site/Proof";
@@ -93,6 +94,14 @@ export default function LpPrivateChef() {
           },
         ]}
         note="Dinners from 6 to 30 guests. Larger gatherings on request."
+      />
+
+      <ReelBand
+        mp4="/videos/dinner-for-eight-reel.mp4"
+        webm="/videos/dinner-for-eight-reel.webm"
+        poster="/photos/dinner-for-eight-poster.jpg"
+        label="Slow-motion moments from a Chef Crusco Catering private dinner: plating, saucing, and dessert"
+        caption="A few moments from the table"
       />
 
       <Steps title="How a private dinner works." steps={steps} bone />

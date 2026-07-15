@@ -6,6 +6,7 @@ import {
   PricingTiers,
   TrustStrip,
   MenuLinks,
+  ReelBand,
   ClosingCTA,
 } from "@/components/site/sections";
 import { Proof } from "@/components/site/Proof";
@@ -126,6 +127,14 @@ export default function LpCorporate() {
             href: "https://chefcrusco.com/dinner-for-eight/",
           },
         ]}
+      />
+
+      <ReelBand
+        mp4="/videos/dinner-for-eight-reel.mp4"
+        webm="/videos/dinner-for-eight-reel.webm"
+        poster="/photos/dinner-for-eight-poster.jpg"
+        label="Slow-motion moments from a Chef Crusco Catering Dinner for Eight: plating, saucing, and dessert"
+        caption="Inside a Dinner for Eight"
       />
 
       {/* Recurring office lunch subscription */}
