@@ -120,22 +120,56 @@ export const cookingClasses = [
 ];
 
 /* ----------------------------- Menus -------------------------------------------- */
+/* Tapas + drop-off ingredients verbatim from Carlos's PDFs (Tapas Service Menu,
+ * Drop Off Platter Menu), received by email 2026-07-14. */
 export const tapasSavory = [
-  "Italian Caprese", "Patatas Bravas", "Blue Cheese Endive Cups", "Warm Soup Shooters",
-  "Gazpacho Shooters", "Ensaladilla Rusa", "Jamon Croquettas", "Mozzarella or Manchego Croquettas",
-  "Argentine Empanadas", "Jamon y Queso Empanadas", "Summer Vegetable Bruschetta", "Winter Style Bruschetta",
-  "Chile Braised Pork Arepas", "Guacamole Arepas", "Tortilla con Chorizo", "Alsatian Leek and Bacon Tarts",
-  "Gambas al Ajillo", "Pinchos de Pescado", "Ceviche de Pina y Chiles", "Crab Cakes and Remoulade",
-  "Salmon Buckwheat Blinis", "Paella con Vieiras", "Greek Style Lamb", "Argentine Lamb Lollipops",
+  { name: "Italian Caprese", desc: "cherry tomatoes, bocconcini mozzarella, basil, basil and lemon oil" },
+  { name: "Patatas Bravas", desc: "twice cooked russet potatoes, pimenton dipping sauce, garlic chips" },
+  { name: "Blue Cheese Endive Cups", desc: "Belgian endive, Point Reyes blue cheese, pears, candied walnuts, lemon EVOO" },
+  { name: "Warm Soup Shooters", desc: "roasted root vegetables, chives, toasted pumpernickel croutons" },
+  { name: "Gazpacho Shooters", desc: "Campari tomato, pepper, and cucumber cold soup shooters" },
+  { name: "Ensaladilla Rusa", desc: "Spanish potato, carrot, and pea salad with homemade mayo, everything cracker" },
+  { name: "Jamon Croquettas", desc: "Spanish ham fritters, ham cracklings" },
+  { name: "Mozzarella or Manchego Croquettas", desc: "classical cheese fritters, spicy tomato ragu, Pecorino" },
+  { name: "Argentine Empanadas", desc: "flaky baked pastries of beef, green olives, green onions, raisins, hard boiled eggs, chimichurri" },
+  { name: "Jamon y Queso Empanadas", desc: "flaky baked pastries of ham, provolone cheese, bechamel" },
+  { name: "Summer Vegetable Bruschetta", desc: "toast points, grilled asparagus, tomato, feta, lemon EVOO" },
+  { name: "Winter Style Bruschetta", desc: "toast points, sauteed Swiss chard, grilled Italian sausage, Pecorino" },
+  { name: "Chile Braised Pork Arepas", desc: "chile de arbol and Negro Modelo braised pork, fried corn patties, pickled red onions, crema Mexicana, Cotija cheese, cilantro" },
+  { name: "Guacamole Arepas", desc: "fried corn patties, chile and lime guacamole, pickled red onions, crema Mexicana, cilantro" },
+  { name: "Tortilla con Chorizo", desc: "squares of potato, caramelized onion, and egg, grilled chorizo, charred tomato" },
+  { name: "Alsatian Leek and Bacon Tarts", desc: "phyllo tarts, creamed leeks, bacon lardons" },
+  { name: "Gambas al Ajillo", desc: "Spanish style seared shrimp, garlic, lemon, white wine, parsley, pimenton" },
+  { name: "Pinchos de Pescado", desc: "skewers of fresh fish, Spanish chorizo, cherry tomato, almond and herb picada" },
+  { name: "Ceviche de Pina y Chiles", desc: "fresh fish, pineapple, serrano chile, cucumber, lime, corn crisps" },
+  { name: "Crab Cakes and Remoulade", desc: "sofrito and fresh crab, spicy Creole mustard sauce" },
+  { name: "Salmon Buckwheat Blinis", desc: "mini buckwheat pancakes, smoked salmon, lemon creme fraiche, dill" },
+  { name: "Paella con Vieiras", desc: "sofrito and saffron rice, seared scallop, jamon chips" },
+  { name: "Greek Style Lamb", desc: "spiced lamb meatballs, tzatziki sauce, crispy red onions, feta, mint" },
+  { name: "Argentine Lamb Lollipops", desc: "grilled rack of lamb chops, chimichurri" },
 ];
 export const tapasSweet = [
-  "Berry and Citrus Tarts", "Palmiers de Nutella", "Cuatro Leches Bites", "Raspberry Semifreddo",
-  "Italian Poached Pears", "Pionono de Dulce de Leche", "Frozen Citrus and Berry Sorbet",
-  "Raspberry and Chocolate Truffle Spoons", "Crema Catalana",
+  { name: "Berry and Citrus Tarts", desc: "mini tarts, citrus lemon curd, mixed berries, apricot and Grand Marnier glaze" },
+  { name: "Palmiers de Nutella", desc: "baked puff pastry rounds, chocolate and hazelnut butter" },
+  { name: "Cuatro Leches Bites", desc: "rum infused cake bites, dulce de leche crema, toasted coconut and turron crumble" },
+  { name: "Raspberry Semifreddo", desc: "semi soft Italian ice cream, raspberry coulis sauce, amaretti crumble, mint" },
+  { name: "Italian Poached Pears", desc: "Sangiovese and vanilla poached pears, mascarpone crema, citrus, mint" },
+  { name: "Pionono de Dulce de Leche", desc: "Argentine cake bites, dulce de leche, torched meringue" },
+  { name: "Frozen Citrus and Berry Sorbet", desc: "blood orange and strawberries, citrus segments, mint" },
+  { name: "Raspberry and Chocolate Truffle Spoons", desc: "Essenza per Colomba chocolate truffle, raspberries, mascarpone sauce, mint" },
+  { name: "Crema Catalana", desc: "Spanish creme brulee, citrus and cinnamon infused custard, turbinado sugar crust, berries, mint" },
 ];
 export const dropOffPlatters = [
-  "Crudite", "Artisan Cheese", "Charcuterie", "Seasonal Fruit", "Argentine Empanadas",
-  "Gulf Coast Shrimp", "Shellfish Cakes", "Texas Beef", "Cuatro Leches Bites", "Chocolate Lovers",
+  { name: "Crudite", desc: "blanched asparagus, celery, carrots, cherry tomatoes, and cucumbers, with 8 oz of green goddess dressing (herbs, anchovies, Dijon mustard, and lemons)", serves: "Serves 10 to 15" },
+  { name: "Artisan Cheese", desc: "Pecorino Romano, herbed goat cheese, Gorgonzola dolce, feta, smoked almonds, dried fruits, membrillo paste", serves: "Serves 10 to 15" },
+  { name: "Charcuterie", desc: "chorizo Espanola, Genoa salami, country pate, mortadella, mixed olives, cornichons, Dijon mustard, toast points", serves: "Serves 10 to 12" },
+  { name: "Seasonal Fruit", desc: "seasonal selection of melons, pineapples, mixed grapes, kiwis, strawberries, and blackberries", serves: "Serves 10 to 15" },
+  { name: "Argentine Empanadas", desc: "homemade baked 3 oz pastries, one choice per platter: beef with onions, olives, raisins, egg, and chimichurri; red peppers, onion, tomato, herbs, and mozzarella; or creamy corn, red pepper flakes, and green onions", serves: "Serves 10 to 12" },
+  { name: "Gulf Coast Shrimp", desc: "2 lbs of freshly poached Gulf shrimp, fresh cut lemons, with 8 oz of smoked tomato cocktail sauce", serves: "Serves 10 to 15" },
+  { name: "Shellfish Cakes", desc: "fresh shellfish of the day, caramelized vegetables, herbs, and crispy panko breading, with 8 oz of spicy remoulade sauce", serves: "Serves 10 to 12" },
+  { name: "Texas Beef", desc: "grilled and oven roasted top sirloin or tri tip roast, silver dollar rolls, with 8 oz of ground mustard and lemon horseradish sauce", serves: "Serves 10 to 12" },
+  { name: "Cuatro Leches Bites", desc: "bite size tres leches cake, dulce de leche whipped cream, toasted coconut, fresh strawberries", serves: "Serves 10 to 12" },
+  { name: "Chocolate Lovers", desc: "chocolate dipped strawberries, triple chocolate Ghirardelli brownies, chocolate ganache dipped madeleine cookies", serves: "Serves 10 to 12" },
 ];
 
 /* ----------------------------- 555 Program -------------------------------------- */

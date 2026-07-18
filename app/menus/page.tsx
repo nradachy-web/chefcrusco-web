@@ -90,17 +90,23 @@ export default function Menus() {
           <div className="mt-10 grid gap-12 md:grid-cols-2">
             <Reveal>
               <p className="eyebrow text-oxblood">Savory</p>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-4 space-y-3.5">
                 {tapasSavory.map((t) => (
-                  <li key={t} className="border-b border-gold/30 pb-2.5 font-display text-lg text-espresso">{t}</li>
+                  <li key={t.name} className="border-b border-gold/30 pb-3">
+                    <p className="font-display text-lg text-espresso">{t.name}</p>
+                    <p className="mt-0.5 text-sm text-cocoa">{t.desc}</p>
+                  </li>
                 ))}
               </ul>
             </Reveal>
             <Reveal delay={0.1}>
               <p className="eyebrow text-oxblood">Sweet</p>
-              <ul className="mt-4 space-y-2.5">
+              <ul className="mt-4 space-y-3.5">
                 {tapasSweet.map((t) => (
-                  <li key={t} className="border-b border-gold/30 pb-2.5 font-display text-lg text-espresso">{t}</li>
+                  <li key={t.name} className="border-b border-gold/30 pb-3">
+                    <p className="font-display text-lg text-espresso">{t.name}</p>
+                    <p className="mt-0.5 text-sm text-cocoa">{t.desc}</p>
+                  </li>
                 ))}
               </ul>
             </Reveal>
@@ -112,9 +118,15 @@ export default function Menus() {
       <section id="drop-off" className="scroll-mt-24 bg-linen">
         <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
           <SectionHead eyebrow="03  Drop-Off Platters" title="Beautiful boards, delivered ready to serve." intro="50 to 75 per person. 800 minimum. Delivery is 30 dollars within 30 miles of Austin." />
-          <ul className="mt-10 grid grid-cols-2 gap-x-10 gap-y-3 sm:grid-cols-3 lg:grid-cols-5">
+          <ul className="mt-10 grid gap-x-10 gap-y-8 sm:grid-cols-2 lg:grid-cols-3">
             {dropOffPlatters.map((p) => (
-              <li key={p} className="border-t border-gold/40 pt-3 font-display text-lg text-espresso">{p}</li>
+              <li key={p.name} className="border-t border-gold/40 pt-4">
+                <div className="flex items-baseline justify-between gap-3">
+                  <p className="font-display text-lg text-espresso">{p.name}</p>
+                  <p className="shrink-0 text-xs font-medium uppercase tracking-wide text-cocoa/70">{p.serves}</p>
+                </div>
+                <p className="mt-1.5 text-sm text-cocoa">{p.desc}</p>
+              </li>
             ))}
           </ul>
         </div>
