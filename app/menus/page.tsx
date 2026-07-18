@@ -5,7 +5,7 @@ import { SectionHead, ClosingCTA, ImageBand } from "@/components/site/sections";
 import { Gallery } from "@/components/site/Gallery";
 import { InquiryPlate } from "@/components/site/InquiryPlate";
 import { Reveal } from "@/components/site/Reveal";
-import { tapasSavory, tapasSweet, dropOffPlatters, cuisinePaths, cookingClasses } from "@/lib/content";
+import { tapasSavory, tapasSweet, dropOffPlatters, cuisinePaths, cookingClasses, customerMenus } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Menus",
@@ -148,8 +148,34 @@ export default function Menus() {
 
       {/* customer specific */}
       <section id="customer-specific" className="scroll-mt-24 bg-espresso text-linen">
-        <div className="mx-auto max-w-3xl px-5 py-24 text-center sm:px-8 sm:py-28">
-          <SectionHead eyebrow="04  Customer Specific" title="When you want something all your own." light intro="Five to nine courses, designed around your taste and your table. From 215 per person. 1,600 minimum." />
+        <div className="mx-auto max-w-[1280px] px-5 py-24 sm:px-8 sm:py-28">
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionHead eyebrow="04  Customer Specific" title="When you want something all your own." light intro="Five to nine courses, designed around your taste and your table. From 215 per person. 1,600 minimum." />
+            <p className="mt-4 text-[0.95rem] text-linen/70">
+              Every menu below was designed for one table and served once. Browse them to see what yours could look like.
+            </p>
+          </div>
+          <div className="mt-14 gap-6 sm:columns-2 lg:columns-3">
+            {customerMenus.map((m, i) => (
+              <Reveal key={m.title} delay={(i % 3) * 0.05}>
+                <article className="mb-6 break-inside-avoid border border-gold/40 bg-linen p-6 text-espresso">
+                  <p className="eyebrow text-saffron">{m.kind}{m.date ? `  ·  ${m.date}` : ""}</p>
+                  <h3 className="mt-2 font-display text-2xl font-medium leading-snug text-espresso">{m.title}</h3>
+                  <ol className="mt-4 space-y-3 border-t border-gold/40 pt-4">
+                    {m.items.map((item, n) => (
+                      <li key={item.name} className="flex gap-3">
+                        <span className="font-display text-saffron tnum">{String(n + 1).padStart(2, "0")}</span>
+                        <span>
+                          <span className="block text-[0.95rem] font-medium">{item.name}</span>
+                          <span className="block text-sm text-cocoa">{item.desc}</span>
+                        </span>
+                      </li>
+                    ))}
+                  </ol>
+                </article>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
