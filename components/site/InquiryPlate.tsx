@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "motion/react";
 import { site } from "@/lib/site";
+import { CONVERSIONS, reportConversion } from "@/lib/gtag";
 
 const steps = [
   "Tell us about your event. You get a free personalized estimate within 24 hours.",
@@ -64,6 +65,7 @@ export function InquiryPlate() {
       });
       const json = await res.json().catch(() => ({}));
       if (res.ok && json.success) {
+        reportConversion(CONVERSIONS.formSubmit);
         setStatus("success");
         form.reset();
         return;

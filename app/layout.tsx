@@ -6,6 +6,7 @@ import { ScrollProgress } from "@/components/site/ScrollProgress";
 import { Nav } from "@/components/site/Nav";
 import { StickyBookingBar } from "@/components/site/StickyBookingBar";
 import { Footer } from "@/components/site/Footer";
+import { GoogleTag } from "@/components/site/GoogleTag";
 
 const fraunces = Fraunces({
   subsets: ["latin"],
@@ -57,6 +58,7 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-linen text-espresso">
+        <GoogleTag />
         <ScrollProgress />
         <Nav />
         <main className="flex-1">{children}</main>
