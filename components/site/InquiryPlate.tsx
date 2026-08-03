@@ -24,9 +24,10 @@ export function InquiryPlate() {
     const data = new FormData(form);
     const name = String(data.get("name") || "").trim();
     const phone = String(data.get("phone") || "").trim();
-    if (!name || !phone) {
+    const email = String(data.get("email") || "").trim();
+    if (!name || !phone || !email) {
       setStatus("error");
-      setError(`Please add your name and phone so we can send your estimate. ${callFallback}`);
+      setError(`Please add your name, phone, and email so we can send your estimate. ${callFallback}`);
       return;
     }
 
@@ -40,6 +41,7 @@ export function InquiryPlate() {
     const detail = [
       `Name: ${name}`,
       `Phone: ${phone}`,
+      `Email: ${email}`,
       `Event type: ${data.get("eventType") || "Not specified"}`,
       `Date: ${data.get("date") || "Flexible"}`,
       `Guests: ${data.get("guests") || "Not specified"}`,
@@ -60,6 +62,8 @@ export function InquiryPlate() {
           from_name: "Chef Crusco Website",
           name,
           phone,
+          email,
+          botcheck: Boolean(data.get("botcheck")),
           message: detail,
         }),
       });
@@ -146,16 +150,25 @@ export function InquiryPlate() {
             </motion.div>
           ) : (
             <form onSubmit={onSubmit} className="grid gap-5">
+              <input
+                type="checkbox"
+                name="botcheck"
+                tabIndex={-1}
+                aria-hidden="true"
+                autoComplete="off"
+                className="hidden"
+              />
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Your name" name="name" required autoComplete="name" />
                 <Field label="Phone" name="phone" type="tel" required autoComplete="tel" />
               </div>
+              <Field label="Email" name="email" type="email" required autoComplete="email" />
               <div className="grid gap-5 sm:grid-cols-2">
                 <SelectField label="What kind of event" name="eventType" options={["Private dinner", "Drop Off Service", "Tapas Service", "Prix-Fixe Service", "Customer Specific", "Corporate Catering", "Cooking Class", "Dinner for Eight", "555 Meal Program", "Not sure yet"]} />
                 <Field label="Your date" name="date" type="date" />
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="How many guests" name="guests" type="number" inputMode="numeric" />
+                <Field label="How many guests (4 minimum)" name="guests" type="number" inputMode="numeric" min={4} />
                 <Field label="Where in Austin" name="location" />
               </div>
               <div className="flex flex-col gap-1.5">
@@ -202,6 +215,7 @@ function Field({
   required,
   autoComplete,
   inputMode,
+  min,
 }: {
   label: string;
   name: string;
@@ -209,6 +223,7 @@ function Field({
   required?: boolean;
   autoComplete?: string;
   inputMode?: "numeric";
+  min?: number;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -223,6 +238,7 @@ function Field({
         required={required}
         autoComplete={autoComplete}
         inputMode={inputMode}
+        min={min}
         className="rounded-sm border border-gold/60 bg-linen px-3.5 py-2.5 text-espresso transition-colors focus:border-saffron focus:outline-none"
       />
     </div>
