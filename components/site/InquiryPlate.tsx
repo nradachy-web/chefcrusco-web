@@ -168,7 +168,7 @@ export function InquiryPlate() {
                 <Field label="Your date" name="date" type="date" />
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
-                <Field label="How many guests (4 minimum)" name="guests" type="number" inputMode="numeric" min={4} />
+                <Field label="How many guests (4 minimum)" name="guests" type="number" inputMode="numeric" min={4} required />
                 <Field label="Where in Austin" name="location" />
               </div>
               <div className="flex flex-col gap-1.5">
