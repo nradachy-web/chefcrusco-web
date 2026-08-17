@@ -14,6 +14,44 @@ const steps = [
 
 const callFallback = `Please call us at ${site.phone}.`;
 
+// Modern Apex attribution rails (public/apex-attribution.js, loaded in the
+// root layout). attach() is additive and fire-and-forget: Web3Forms stays the
+// delivery lane, and this call never blocks or throws.
+declare global {
+  interface Window {
+    apexAttribution?: {
+      attach: (fields: {
+        name?: string;
+        email?: string;
+        phone?: string;
+        message?: string;
+        isTest?: boolean;
+      }) => void;
+    };
+  }
+}
+
+/**
+ * Mirror a successful submission into the Modern Apex lead ledger so the
+ * inquiry arrives with a name attached instead of as an anonymous daily total
+ * from Google. ?apx_test=1 marks the row as a rollout test so a verification
+ * submit never counts as a real lead. All failures swallowed by contract:
+ * attribution must never surface on the guest's submit experience.
+ */
+function attachToApexLedger(fields: {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+}) {
+  try {
+    const isTest = new URLSearchParams(window.location.search).get("apx_test") === "1";
+    window.apexAttribution?.attach(isTest ? { ...fields, isTest: true } : fields);
+  } catch {
+    /* swallowed by contract */
+  }
+}
+
 export function InquiryPlate() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
@@ -70,6 +108,7 @@ export function InquiryPlate() {
       const json = await res.json().catch(() => ({}));
       if (res.ok && json.success) {
         reportConversion(CONVERSIONS.formSubmit);
+        attachToApexLedger({ name, email, phone, message: detail });
         setStatus("success");
         form.reset();
         return;

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
+import { asset } from "@/lib/asset";
 import { ScrollProgress } from "@/components/site/ScrollProgress";
 import { Nav } from "@/components/site/Nav";
 import { StickyBookingBar } from "@/components/site/StickyBookingBar";
@@ -59,6 +61,15 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col bg-linen text-espresso">
         <GoogleTag />
+        {/* Modern Apex attribution rails. First-party and vendored into
+            public/ on purpose: the portal copy is never hotlinked, so the
+            form keeps working if the portal is down. The token is a
+            write-only lead-intake credential and is meant to be public. */}
+        <Script
+          src={asset("/apex-attribution.js")}
+          data-token="bcc43b8cafa11cbbf5ddd63f9a638021"
+          strategy="afterInteractive"
+        />
         <ScrollProgress />
         <Nav />
         <main className="flex-1">{children}</main>
