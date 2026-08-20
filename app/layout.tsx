@@ -70,6 +70,15 @@ export default function RootLayout({
           data-token="bcc43b8cafa11cbbf5ddd63f9a638021"
           strategy="afterInteractive"
         />
+        {/* CallRail dynamic number insertion (company "Chef Crusco Catering",
+            Modern Apex agency account). Inert until a tracker with a number
+            exists in CallRail; once one does, visitors from tracked sources
+            see the displayed 512.970.2200 (text and tel: links) swapped to
+            the tracking number. No redeploy needed at activation time. */}
+        <Script
+          src="https://cdn.callrail.com/companies/237295044/fd10d2129f049dbdb102/12/swap.js"
+          strategy="afterInteractive"
+        />
         <ScrollProgress />
         <Nav />
         <main className="flex-1">{children}</main>
