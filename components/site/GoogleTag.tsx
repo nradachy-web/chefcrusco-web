@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import Script from "next/script";
-import { CONVERSIONS, GOOGLE_ADS_ID, reportConversion } from "@/lib/gtag";
+import { CONVERSIONS, GA4_ID, GOOGLE_ADS_ID, reportConversion } from "@/lib/gtag";
 
 export function GoogleTag() {
   useEffect(() => {
@@ -26,7 +26,8 @@ export function GoogleTag() {
         {`window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', '${GOOGLE_ADS_ID}');`}
+gtag('config', '${GOOGLE_ADS_ID}');
+gtag('config', '${GA4_ID}');`}
       </Script>
     </>
   );
