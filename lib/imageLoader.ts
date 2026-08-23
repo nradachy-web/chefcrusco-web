@@ -1,9 +1,9 @@
 /**
- * Custom next/image loader for static export on GitHub Pages.
- * Prepends the repo basePath to absolute /public paths so images resolve
- * under /chefcrusco-web. When on the custom domain, set basePath to "".
+ * Custom next/image loader for static export. Prepends the deploy's base path to
+ * absolute /public image paths. Env-driven so it matches next.config.ts on both
+ * hosts (GitHub Pages: /chefcrusco-web; Vercel: "" / domain root).
  */
-const basePath = "/chefcrusco-web";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function imageLoader({ src }: { src: string }): string {
   if (/^https?:\/\//.test(src)) return src;

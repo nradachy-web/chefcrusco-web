@@ -1,12 +1,13 @@
 import type { NextConfig } from "next";
 
 /**
- * Static export for GitHub Pages.
- * Staging as a project page at /chefcrusco-web. When this moves to the
- * custom domain chefcrusco.com, set repoBase to "" (and update
- * lib/imageLoader.ts) and add a public/CNAME file.
+ * Static export. Runs on two hosts during the migration:
+ *   - GitHub Pages: project page under /chefcrusco-web (CI sets NEXT_PUBLIC_BASE_PATH).
+ *   - Vercel: served at the domain root (env unset -> basePath "").
+ * The base path is env-driven so one branch builds correctly for both. Keep the
+ * three basePath readers in sync: next.config.ts, lib/imageLoader.ts, lib/asset.ts.
  */
-const repoBase = "/chefcrusco-web";
+const repoBase = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {
   output: "export",

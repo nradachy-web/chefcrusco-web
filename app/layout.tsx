@@ -48,7 +48,12 @@ export const metadata: Metadata = {
     description: site.description,
   },
   alternates: { canonical: site.url },
-  robots: { index: true, follow: true },
+  // This deploy is a paid-ads traffic destination on a shared host
+  // (chefcrusco.vercel.app); the public SEO site stays at chefcrusco.com. Keep the
+  // whole site noindex so it can never compete with or duplicate the real domain in
+  // search. Ads and GA4 bounce-rate tracking are unaffected by noindex. When/if this
+  // moves to its own real domain, set index: true.
+  robots: { index: false, follow: true },
 };
 
 export default function RootLayout({
