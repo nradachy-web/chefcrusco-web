@@ -14,47 +14,12 @@ const steps = [
 
 const callFallback = `Please call us at ${site.phone}.`;
 
-// Modern Apex attribution rails (public/apex-attribution.js, loaded in the
-// root layout). attach() is additive and fire-and-forget: Web3Forms stays the
-// delivery lane, and this call never blocks or throws.
-declare global {
-  interface Window {
-    apexAttribution?: {
-      attach: (fields: {
-        name?: string;
-        email?: string;
-        phone?: string;
-        message?: string;
-        isTest?: boolean;
-      }) => void;
-    };
-  }
-}
-
-/**
- * Mirror a successful submission into the Modern Apex lead ledger so the
- * inquiry arrives with a name attached instead of as an anonymous daily total
- * from Google. ?apx_test=1 marks the row as a rollout test so a verification
- * submit never counts as a real lead. All failures swallowed by contract:
- * attribution must never surface on the guest's submit experience.
- */
-function attachToApexLedger(fields: {
-  name: string;
-  email: string;
-  phone: string;
-  message: string;
-}) {
-  try {
-    const isTest = new URLSearchParams(window.location.search).get("apx_test") === "1";
-    window.apexAttribution?.attach(isTest ? { ...fields, isTest: true } : fields);
-  } catch {
-    /* swallowed by contract */
-  }
-}
+const budgetTiers = ["$50–80", "$80–140", "$140–200", "$200+"];
 
 export function InquiryPlate() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
+  const [budget, setBudget] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -83,6 +48,7 @@ export function InquiryPlate() {
       `Event type: ${data.get("eventType") || "Not specified"}`,
       `Date: ${data.get("date") || "Flexible"}`,
       `Guests: ${data.get("guests") || "Not specified"}`,
+      `Budget per guest: ${budget || "Not specified"}`,
       `Where in Austin: ${data.get("location") || "Not specified"}`,
       "",
       `Details: ${data.get("details") || "(none)"}`,
@@ -108,9 +74,9 @@ export function InquiryPlate() {
       const json = await res.json().catch(() => ({}));
       if (res.ok && json.success) {
         reportConversion(CONVERSIONS.formSubmit);
-        attachToApexLedger({ name, email, phone, message: detail });
         setStatus("success");
         form.reset();
+        setBudget("");
         return;
       }
       setStatus("error");
@@ -210,6 +176,7 @@ export function InquiryPlate() {
                 <Field label="How many guests (4 minimum)" name="guests" type="number" inputMode="numeric" min={4} required />
                 <Field label="Where in Austin" name="location" />
               </div>
+              <BudgetPicker value={budget} onChange={setBudget} />
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="details" className="text-sm font-medium text-cocoa">
                   Anything else (optional)
@@ -313,6 +280,59 @@ function SelectField({
           </option>
         ))}
       </select>
+    </div>
+  );
+}
+
+function BudgetPicker({
+  value,
+  onChange,
+}: {
+  value: string;
+  onChange: (v: string) => void;
+}) {
+  return (
+    <div className="flex flex-col gap-2">
+      <span className="text-sm font-medium text-cocoa">
+        Estimated budget per guest{" "}
+        <span className="font-normal text-cocoa/60">(optional)</span>
+      </span>
+      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
+        {budgetTiers.map((tier, i) => {
+          const active = value === tier;
+          return (
+            <motion.button
+              key={tier}
+              type="button"
+              onClick={() => onChange(active ? "" : tier)}
+              aria-pressed={active}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-10% 0px" }}
+              transition={{ duration: 0.5, delay: i * 0.06, ease: [0.22, 1, 0.36, 1] }}
+              whileTap={{ scale: 0.96 }}
+              className={`relative flex items-center justify-center rounded-sm border px-3 py-3 text-sm tnum transition-colors ${
+                active ? "border-saffron" : "border-gold/60 hover:border-saffron"
+              }`}
+            >
+              {active && (
+                <motion.span
+                  layoutId="budgetGlow"
+                  className="absolute inset-0 rounded-sm bg-saffron"
+                  transition={{ type: "spring", stiffness: 420, damping: 34 }}
+                />
+              )}
+              <span
+                className={`relative z-10 font-medium ${
+                  active ? "text-linen" : "text-espresso"
+                }`}
+              >
+                {tier}
+              </span>
+            </motion.button>
+          );
+        })}
+      </div>
     </div>
   );
 }
