@@ -30,7 +30,6 @@ export const nav = [
 ] as const;
 
 export const footerNav = [
-  { label: "555 Meal Program", href: "/555" },
   { label: "Press", href: "/press" },
   { label: "FAQ", href: "/faq" },
   { label: "Book", href: "/book" },

@@ -363,33 +363,6 @@ export const customerMenus = [
   },
 ];
 
-/* ----------------------------- 555 Program -------------------------------------- */
-export const fiveFiveFive = {
-  hook: ["Tired of thinking about what to cook?", "Exhausted from your weekly grocery shopping?", "Overwhelmed with daily cooking and cleaning?"],
-  promise: "No meal planning. No grocery stores. No cooking or cleaning. Incredible meals.",
-  structure: "5 proteins, 5 side dishes, 5 pound minimum order.",
-  proteins: [
-    { name: "Beef Steak", desc: "Pan seared, EVOO, salt and pepper", price: "35 per pound" },
-    { name: "Grilled Chicken Breasts", desc: "Simply grilled", price: "25 per pound" },
-    { name: "Pan Roasted Salmon", desc: "Fresh, pan roasted", price: "25 per pound" },
-    { name: "Pork Medallion", desc: "Tender pork medallion", price: "25 per pound" },
-    { name: "Braised and Seared Pulled Pork", desc: "Paprika, cumin, oregano, salt and pepper", price: "25 per pound" },
-  ],
-  sides: [
-    { name: "White Rice", desc: "Steamed white jasmine", price: "25 per pound" },
-    { name: "Seasonal Vegetables", desc: "Grilled zucchini, summer squash, portobello, carrots, onions and peppers", price: "25 per pound" },
-    { name: "Root Vegetables", desc: "Oven roasted carrots, parsnips, potato, turnips and sweet potato", price: "25 per pound" },
-    { name: "Mashed Potatoes", desc: "Red skinned potatoes, cream, butter, salt and pepper", price: "25 per pound" },
-  ],
-  faqs: [
-    { q: "What is the minimum order?", a: "Five pounds. You can always order more, and many customers do." },
-    { q: "Where do I pick up?", a: "Wingman Kitchens, inside Springdale General, 1023 Springdale Rd, on Tuesdays between 4 and 5pm." },
-    { q: "Is the food frozen?", a: "No. Everything is cooked fresh and ready to reheat, never frozen." },
-    { q: "Can I mix and match proteins and sides?", a: "Yes, mix and match however you like." },
-    { q: "How far does a pound go?", a: "One pound typically feeds 2 to 3 people in one sitting. Five pounds feeds up to 4 people across 2 to 3 sittings." },
-  ],
-};
-
 /* ----------------------------- Team (full verbatim bios) ------------------------ */
 export const team = [
   { name: "Carlos Crusco", headshot: "/photos/team/carlos.jpg", role: "Chef and Owner", bio: "Growing up with Argentine parents of Italian and Spanish heritage, Chef Crusco developed a wealth of knowledge, practice, and opportunities for culinary travels throughout South America and Europe. His training includes The Escoffier Cooking School in Paris and cooking with Maria Affinita in S. Agata, Italy. Cooking demonstrations include Le Cordon Bleu, Central Market, the Texas Beef Council, and the Buffalo Gap Food and Wine Festival with world renowned Chef Francis Mallmann. Over the last decade and a half he has grown his private chef business into a full residential and corporate catering company, specializing in unique culinary experiences at home and the office." },
