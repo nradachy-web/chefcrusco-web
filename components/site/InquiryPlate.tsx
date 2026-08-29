@@ -208,7 +208,7 @@ export function InquiryPlate() {
               </div>
               <Field label="Email" name="email" type="email" required autoComplete="email" />
               <div className="grid gap-5 sm:grid-cols-2">
-                <SelectField label="What kind of event" name="eventType" options={["Private dinner", "Drop Off Service", "Tapas Service", "Prix-Fixe Service", "Customer Specific", "Corporate Catering", "Cooking Class", "Dinner for Eight", "555 Meal Program", "Not sure yet"]} />
+                <SelectField label="What kind of event" name="eventType" options={["Drop Off Service", "Tapas Service", "Prix-Fixe Service", "Customer Specific", "Corporate Catering", "Cooking Class"]} />
                 <Field label="Your date" name="date" type="date" />
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
