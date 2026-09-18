@@ -14,7 +14,33 @@ const steps = [
 
 const callFallback = `Please call us at ${site.phone}.`;
 
+const eventTypes = [
+  "Drop Off Service",
+  "Tapas Service",
+  "Prix-Fixe Service",
+  "Customer Specific",
+  "Corporate Catering",
+  "Cooking Class",
+];
+
 const budgetTiers = ["$50 to 80", "$80 to 140", "$140 to 200", "$200+"];
+
+// Budget choices never start below the published per person price of the
+// chosen service (cateringTiers and corporateTiers in lib/content.ts). Cooking
+// classes price with Prix-Fixe. Corporate Catering spans all four service
+// levels, so it keeps the full list, as does a form with no event chosen yet.
+const budgetTiersByEvent: Record<string, string[]> = {
+  "Tapas Service": ["$80 to 140", "$140 to 200", "$200+"],
+  "Prix-Fixe Service": ["$155 to 200", "$200+"],
+  "Cooking Class": ["$155 to 200", "$200+"],
+  "Customer Specific": ["$215 to 300", "$300+"],
+};
+
+const budgetCols: Record<number, string> = {
+  2: "sm:grid-cols-2",
+  3: "sm:grid-cols-3",
+  4: "sm:grid-cols-4",
+};
 
 // Modern Apex attribution rails (public/apex-attribution.js, loaded in the
 // root layout). attach() is additive and fire-and-forget: Web3Forms stays the
@@ -58,6 +84,14 @@ export function InquiryPlate() {
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [error, setError] = useState("");
   const [budget, setBudget] = useState("");
+  const [eventType, setEventType] = useState("");
+  const tiers = budgetTiersByEvent[eventType] ?? budgetTiers;
+
+  function onEventTypeChange(next: string) {
+    setEventType(next);
+    const nextTiers = budgetTiersByEvent[next] ?? budgetTiers;
+    if (!nextTiers.includes(budget)) setBudget("");
+  }
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -116,6 +150,7 @@ export function InquiryPlate() {
         setStatus("success");
         form.reset();
         setBudget("");
+        setEventType("");
         return;
       }
       setStatus("error");
@@ -208,14 +243,14 @@ export function InquiryPlate() {
               </div>
               <Field label="Email" name="email" type="email" required autoComplete="email" />
               <div className="grid gap-5 sm:grid-cols-2">
-                <SelectField label="What kind of event" name="eventType" options={["Drop Off Service", "Tapas Service", "Prix-Fixe Service", "Customer Specific", "Corporate Catering", "Cooking Class"]} />
+                <SelectField label="What kind of event" name="eventType" options={eventTypes} onChange={onEventTypeChange} />
                 <Field label="Your date" name="date" type="date" />
               </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="How many guests (4 minimum)" name="guests" type="number" inputMode="numeric" min={4} required />
                 <Field label="Where in Austin" name="location" />
               </div>
-              <BudgetPicker value={budget} onChange={setBudget} />
+              <BudgetPicker tiers={tiers} value={budget} onChange={setBudget} />
               <div className="flex flex-col gap-1.5">
                 <label htmlFor="details" className="text-sm font-medium text-cocoa">
                   Anything else (optional)
@@ -294,10 +329,12 @@ function SelectField({
   label,
   name,
   options,
+  onChange,
 }: {
   label: string;
   name: string;
   options: string[];
+  onChange?: (value: string) => void;
 }) {
   return (
     <div className="flex flex-col gap-1.5">
@@ -308,6 +345,7 @@ function SelectField({
         id={name}
         name={name}
         defaultValue=""
+        onChange={onChange ? (e) => onChange(e.target.value) : undefined}
         className="rounded-sm border border-gold/60 bg-linen px-3.5 py-2.5 text-espresso transition-colors focus:border-saffron focus:outline-none"
       >
         <option value="" disabled>
@@ -324,9 +362,11 @@ function SelectField({
 }
 
 function BudgetPicker({
+  tiers,
   value,
   onChange,
 }: {
+  tiers: string[];
   value: string;
   onChange: (v: string) => void;
 }) {
@@ -336,8 +376,8 @@ function BudgetPicker({
         Estimated budget per guest{" "}
         <span className="font-normal text-cocoa/60">(optional)</span>
       </span>
-      <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-        {budgetTiers.map((tier, i) => {
+      <div className={`grid grid-cols-2 gap-2.5 ${budgetCols[tiers.length] ?? "sm:grid-cols-4"}`}>
+        {tiers.map((tier, i) => {
           const active = value === tier;
           return (
             <motion.button
