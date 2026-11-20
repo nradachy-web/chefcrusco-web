@@ -14,6 +14,15 @@ const steps = [
 
 const callFallback = `Please call us at ${site.phone}.`;
 
+function digitsOnly(value: string) {
+  const d = value.replace(/\D/g, "");
+  return d.length === 11 && d.startsWith("1") ? d.slice(1) : d;
+}
+
+// Our own numbers. Some guests type the number they see on the page instead
+// of theirs, which leaves no way to call them back about the estimate.
+const ownNumbers = ["512.580.7689", site.phone].map(digitsOnly);
+
 const eventTypes = [
   "Drop Off Service",
   "Tapas Service",
@@ -105,6 +114,18 @@ export function InquiryPlate() {
       setError(`Please add your name, phone, and email so we can send your estimate. ${callFallback}`);
       return;
     }
+    if (ownNumbers.includes(digitsOnly(phone))) {
+      setStatus("error");
+      setError("That is our phone number. Please enter yours so we can call you about your estimate.");
+      (form.elements.namedItem("phone") as HTMLInputElement | null)?.focus();
+      return;
+    }
+    if (!budget) {
+      setStatus("error");
+      setError("Please choose an estimated budget per guest so we can tailor your estimate.");
+      form.querySelector<HTMLButtonElement>("[data-budget-tier]")?.focus();
+      return;
+    }
 
     const accessKey = process.env.NEXT_PUBLIC_WEB3FORMS_ACCESS_KEY;
     if (!accessKey) {
@@ -120,7 +141,7 @@ export function InquiryPlate() {
       `Event type: ${data.get("eventType") || "Not specified"}`,
       `Date: ${data.get("date") || "Flexible"}`,
       `Guests: ${data.get("guests") || "Not specified"}`,
-      `Budget per guest: ${budget || "Not specified"}`,
+      `Budget per guest: ${budget}`,
       `Where in Austin: ${data.get("location") || "Not specified"}`,
       "",
       `Details: ${data.get("details") || "(none)"}`,
@@ -372,17 +393,23 @@ function BudgetPicker({
 }) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-sm font-medium text-cocoa">
-        Estimated budget per guest{" "}
-        <span className="font-normal text-cocoa/60">(optional)</span>
+      <span id="budget-label" className="text-sm font-medium text-cocoa">
+        Estimated budget per guest
+        <span className="text-saffron"> *</span>
       </span>
-      <div className={`grid grid-cols-2 gap-2.5 ${budgetCols[tiers.length] ?? "sm:grid-cols-4"}`}>
+      <div
+        role="group"
+        aria-labelledby="budget-label"
+        aria-required="true"
+        className={`grid grid-cols-2 gap-2.5 ${budgetCols[tiers.length] ?? "sm:grid-cols-4"}`}
+      >
         {tiers.map((tier, i) => {
           const active = value === tier;
           return (
             <motion.button
               key={tier}
               type="button"
+              data-budget-tier
               onClick={() => onChange(active ? "" : tier)}
               aria-pressed={active}
               initial={{ opacity: 0, y: 10 }}
