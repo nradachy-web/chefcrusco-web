@@ -21,7 +21,26 @@ function digitsOnly(value: string) {
 
 // Our own numbers. Some guests type the number they see on the page instead
 // of theirs, which leaves no way to call them back about the estimate.
-const ownNumbers = ["512.580.7689", site.phone].map(digitsOnly);
+// The CallRail website pool shows each visitor one of four tracking numbers
+// in place of the main line, so all four are listed, and isOwnNumber also
+// reads the tel: links on the page in case the pool changes.
+const ownNumbers = [
+  site.phone,
+  "512.580.7689",
+  "512.379.6248",
+  "512.900.7505",
+  "512.872.4824",
+].map(digitsOnly);
+
+function isOwnNumber(phone: string) {
+  const entered = digitsOnly(phone);
+  if (!entered) return false;
+  if (ownNumbers.includes(entered)) return true;
+  if (typeof document === "undefined") return false;
+  return Array.from(document.querySelectorAll<HTMLAnchorElement>('a[href^="tel:"]')).some(
+    (a) => digitsOnly(a.getAttribute("href") ?? "") === entered,
+  );
+}
 
 const eventTypes = [
   "Drop Off Service",
@@ -114,7 +133,7 @@ export function InquiryPlate() {
       setError(`Please add your name, phone, and email so we can send your estimate. ${callFallback}`);
       return;
     }
-    if (ownNumbers.includes(digitsOnly(phone))) {
+    if (isOwnNumber(phone)) {
       setStatus("error");
       setError("That is our phone number. Please enter yours so we can call you about your estimate.");
       (form.elements.namedItem("phone") as HTMLInputElement | null)?.focus();
